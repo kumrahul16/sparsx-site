@@ -1,159 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>sparsX</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sparsX</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<style>
-body {
-  margin: 0;
-  background: #0B0E13;
-  color: #ffffff;
-  font-family: 'Space Grotesk', sans-serif;
-  overflow-x: hidden;
-}
+  <style>
+    :root {
+      --bg: #0a0d12;
+      --panel: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: rgba(255, 255, 255, 0.96);
+      --muted: rgba(255, 255, 255, 0.68);
+      --faint: rgba(255, 255, 255, 0.42);
+      --button-bg: #f4f6fb;
+      --button-text: #0b0e13;
+    }
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.hero {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 140px 20px 120px 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(70, 90, 130, 0.08), transparent 40%), var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
 
-.logo {
-  font-size: 3.8rem;
-  font-weight: 600;
-  letter-spacing: -1px;
-  margin-bottom: 50px;
-}
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
 
-.logo span {
-  font-weight: 300;
-}
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 20px;
+    }
 
-.headline {
-  font-size: 2.3rem;
-  font-weight: 600;
-  margin-bottom: 25px;
-}
+    .hero-inner {
+      width: 100%;
+      max-width: 980px;
+      text-align: center;
+    }
 
-.subheadline {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  opacity: 0.85;
-  max-width: 760px;
-  margin: 0 auto 50px auto;
-}
+    .brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 52px;
+    }
 
-.email-form input {
-  padding: 14px 18px;
-  width: 280px;
-  border-radius: 4px;
-  border: none;
-  background: #151A22;
-  color: white;
-  font-size: 1rem;
-}
+    .company-logo {
+      height: 52px;
+      width: auto;
+      display: block;
+      opacity: 0.96;
+    }
 
-.email-form button {
-  padding: 14px 20px;
-  margin-left: 8px;
-  border-radius: 4px;
-  border: none;
-  background: #3A6FF7;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-}
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.34em;
+      color: var(--faint);
+    }
 
-.email-form button:hover {
-  background: #4A9EFF;
-}
+    .headline {
+      font-size: clamp(3rem, 8vw, 6.6rem);
+      font-weight: 500;
+      line-height: 0.94;
+      letter-spacing: -0.055em;
+      margin: 0 auto 28px auto;
+      max-width: 920px;
+    }
 
-.build-note {
-  margin-top: 60px;
-  font-size: 0.85rem;
-  opacity: 0.5;
-}
-</style>
+    .divider {
+      width: 84px;
+      height: 1px;
+      background: rgba(255,255,255,0.14);
+      margin: 0 auto 28px auto;
+    }
+
+    .subheadline {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 18px auto;
+    }
+
+    .supporting {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      max-width: 680px;
+      margin: 0 auto 48px auto;
+    }
+
+    .signup-panel {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+    }
+
+    .signup-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--faint);
+      margin-bottom: 16px;
+    }
+
+    .email-form form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .email-form input {
+      flex: 1 1 280px;
+      min-width: 0;
+      padding: 15px 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .email-form input::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+
+    .email-form input:focus {
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .email-form button {
+      padding: 15px 20px;
+      border-radius: 14px;
+      border: none;
+      background: var(--button-bg);
+      color: var(--button-text);
+      font-weight: 600;
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .email-form button:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .build-note {
+      margin-top: 16px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.46);
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding: 40px 18px;
+      }
+
+      .brand {
+        margin-bottom: 36px;
+      }
+
+      .company-logo {
+        height: 42px;
+      }
+
+      .subheadline {
+        font-size: 1.06rem;
+      }
+
+      .supporting {
+        font-size: 0.95rem;
+      }
+
+      .signup-panel {
+        padding: 18px;
+      }
+
+      .email-form form {
+        flex-direction: column;
+      }
+
+      .email-form button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <canvas id="network"></canvas>
 
-<canvas id="network"></canvas>
+  <section class="hero">
+    <div class="hero-inner">
 
-<div class="hero">
+      <div class="brand">
+        <img src="logo.png" alt="sparsX logo" class="company-logo" />
+      </div>
 
-  <div class="logo">spars<span>X</span></div>
+      <div class="eyebrow">Compute infrastructure for AI and HPC</div>
 
-  <div class="headline">
-    Compute what matters. Nothing more.
-  </div>
+      <h1 class="headline">
+        Compute Only What Matters. Nothing More.
+      </h1>
 
-  <div class="subheadline">
-    Modern AI and HPC workloads activate only what they need.
-    Infrastructure is what ultimately constrains selective sparse activation.
-    sparsX is next-generation compute infrastructure designed for that reality.
-  </div>
+      <div class="divider"></div>
 
-  <div class="email-form">
-    <form>
-      <input type="email" placeholder="Enter your email" required />
-      <button type="submit">Stay Updated</button>
-    </form>
-  </div>
+      <p class="subheadline">
+        When models compute only what matters, intelligence scales beyond the limits of conventional dense compute.
+      </p>
 
-  <div class="build-note">
-    We are selectively constructing this site. The rest is unnecessary.
-  </div>
+      <p class="supporting">
+        sparsX is the compute infrastructure for that future in AI and HPC.
+      </p>
 
-</div>
+      <div class="signup-panel">
+        <div class="signup-label">Stay close</div>
 
-<script>
-const canvas = document.getElementById("network");
-const ctx = canvas.getContext("2d");
+        <div class="email-form">
+          <form>
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Stay tuned</button>
+          </form>
+        </div>
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+        <div class="build-note">
+          The full site is still computing what matters. Launching soon.
+        </div>
+      </div>
 
-const nodes = [];
-const spacing = 140;
+    </div>
+  </section>
 
-for (let x = 0; x < canvas.width; x += spacing) {
-  for (let y = 0; y < canvas.height; y += spacing) {
-    if (Math.random() > 0.7) {
-      nodes.push({ x, y });
+  <script>
+    const canvas = document.getElementById("network");
+    const ctx = canvas.getContext("2d");
+
+    let nodes = [];
+    const spacing = 150;
+    const mouse = { x: null, y: null };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      generateNodes();
     }
-  }
-}
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function generateNodes() {
+      nodes = [];
+      for (let x = spacing / 2; x < canvas.width; x += spacing) {
+        for (let y = spacing / 2; y < canvas.height; y += spacing) {
+          if (Math.random() > 0.72) {
+            nodes.push({
+              x: x + (Math.random() - 0.5) * 26,
+              y: y + (Math.random() - 0.5) * 26,
+              r: Math.random() * 1.2 + 1
+            });
+          }
+        }
+      }
+    }
 
-  ctx.fillStyle = "rgba(74,158,255,0.08)";
-  nodes.forEach(node => {
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
-    ctx.fill();
-  });
+    function drawConnections() {
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-  requestAnimationFrame(draw);
-}
+          if (dist < 180) {
+            ctx.strokeStyle = `rgba(160, 190, 255, ${0.045 - dist / 5000})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
 
-draw();
-</script>
+    function drawNodes() {
+      nodes.forEach(node => {
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(210, 225, 255, 0.18)";
+        ctx.fill();
+      });
+    }
 
+    function drawMouseGlow() {
+      if (mouse.x === null || mouse.y === null) return;
+
+      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 180);
+      gradient.addColorStop(0, "rgba(120, 150, 255, 0.06)");
+      gradient.addColorStop(1, "rgba(120, 150, 255, 0)");
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawMouseGlow();
+      drawConnections();
+      drawNodes();
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener("mouseleave", () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    window.addEventListener("resize", resizeCanvas);
+
+    resizeCanvas();
+    draw();
+  </script>
 </body>
 </html>
