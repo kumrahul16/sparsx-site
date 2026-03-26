@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>sparsX</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -12,26 +16,76 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 140px 20px 120px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.logo {
   font-size: 3.8rem;
   font-weight: 600;
   letter-spacing: -1px;
+  margin-bottom: 50px;
+}
+
+.logo span {
+  font-weight: 300;
 }
 
 .headline {
-  font-size: 2.2rem;
-  font-weight: 500;
-  color: #4A9EFF;
+  font-size: 2.3rem;
+  font-weight: 600;
+  margin-bottom: 25px;
 }
 
-button {
+.subheadline {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  opacity: 0.85;
+  max-width: 760px;
+  margin: 0 auto 50px auto;
+}
+
+.email-form input {
+  padding: 14px 18px;
+  width: 280px;
+  border-radius: 4px;
+  border: none;
+  background: #151A22;
+  color: white;
+  font-size: 1rem;
+}
+
+.email-form button {
+  padding: 14px 20px;
+  margin-left: 8px;
+  border-radius: 4px;
+  border: none;
   background: #3A6FF7;
   color: white;
-  border: none;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-button:hover {
+.email-form button:hover {
   background: #4A9EFF;
+}
+
+.build-note {
+  margin-top: 60px;
+  font-size: 0.85rem;
+  opacity: 0.5;
 }
 </style>
 </head>
@@ -41,62 +95,64 @@ button:hover {
 <canvas id="network"></canvas>
 
 <div class="hero">
-  <div>
-    <h1>spars<span>X</span></h1>
 
-    <div class="headline">
-      Compute what matters. Nothing more.
-    </div>
+  <div class="logo">spars<span>X</span></div>
 
-    <div class="subheadline">
-      Modern AI and HPC workloads activate only what they need — sparsX is next-generation compute infrastructure designed for that reality.
-    </div>
-
-    <div class="email-form">
-      <form action="#" method="POST">
-        <input type="email" placeholder="Enter your email" required />
-        <button type="submit">Stay Updated</button>
-      </form>
-    </div>
-
-    <div class="build-note">
-      We’re selectively constructing this site. The rest is unnecessary.
-    </div>
+  <div class="headline">
+    Compute what matters. Nothing more.
   </div>
+
+  <div class="subheadline">
+    Modern AI and HPC workloads activate only what they need.
+    Infrastructure is what ultimately constrains selective sparse activation.
+    sparsX is next-generation compute infrastructure designed for that reality.
+  </div>
+
+  <div class="email-form">
+    <form>
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit">Stay Updated</button>
+    </form>
+  </div>
+
+  <div class="build-note">
+    We are selectively constructing this site. The rest is unnecessary.
+  </div>
+
 </div>
 
 <script>
-  const canvas = document.getElementById("network");
-  const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("network");
+const ctx = canvas.getContext("2d");
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  const nodes = [];
-  const spacing = 120;
+const nodes = [];
+const spacing = 140;
 
-  for (let x = 0; x < canvas.width; x += spacing) {
-    for (let y = 0; y < canvas.height; y += spacing) {
-      if (Math.random() > 0.65) {
-        nodes.push({ x, y });
-      }
+for (let x = 0; x < canvas.width; x += spacing) {
+  for (let y = 0; y < canvas.height; y += spacing) {
+    if (Math.random() > 0.7) {
+      nodes.push({ x, y });
     }
   }
+}
 
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "rgba(255,255,255,0.07)";
-    nodes.forEach(node => {
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
-      ctx.fill();
-    });
+  ctx.fillStyle = "rgba(74,158,255,0.08)";
+  nodes.forEach(node => {
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+  });
 
-    requestAnimationFrame(draw);
-  }
+  requestAnimationFrame(draw);
+}
 
-  draw();
+draw();
 </script>
 
 </body>
