@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>sparsX</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --text: rgba(255, 255, 255, 0.95);
-      --muted: rgba(255, 255, 255, 0.72);
-      --faint: rgba(255, 255, 255, 0.42);
-      --panel: rgba(255, 255, 255, 0.04);
+      --text: rgba(255, 255, 255, 0.94);
+      --muted: rgba(255, 255, 255, 0.68);
+      --faint: rgba(255, 255, 255, 0.44);
+      --panel: rgba(255, 255, 255, 0.045);
       --panel-border: rgba(255, 255, 255, 0.08);
-      --input-bg: rgba(255, 255, 255, 0.05);
-      --button-bg: #0a0a0a;
-      --button-text: #f7f2eb;
-      --accent: #ff9a3d;
+      --input-bg: rgba(255, 255, 255, 0.04);
+      --button-bg: rgba(8, 8, 10, 0.92);
+      --button-text: #f8f4ef;
+      --signal: rgba(255, 236, 220, 0.92);
     }
 
     * {
@@ -27,17 +29,18 @@
     html, body {
       margin: 0;
       min-height: 100%;
+      background: #000;
     }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: "Inter", sans-serif;
       color: var(--text);
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 18% 22%, rgba(255, 140, 60, 0.34), transparent 30%),
-        radial-gradient(circle at 82% 30%, rgba(255, 110, 28, 0.24), transparent 32%),
-        radial-gradient(circle at 50% 82%, rgba(255, 160, 72, 0.18), transparent 36%),
-        linear-gradient(180deg, #1a0d05 0%, #2a1206 18%, #4a1c08 52%, #2b1207 100%);
+        radial-gradient(circle at 18% 20%, rgba(255, 132, 46, 0.40), transparent 30%),
+        radial-gradient(circle at 78% 26%, rgba(255, 110, 22, 0.24), transparent 32%),
+        radial-gradient(circle at 54% 78%, rgba(255, 164, 94, 0.16), transparent 35%),
+        linear-gradient(180deg, #160903 0%, #251005 18%, #451907 52%, #241005 100%);
       position: relative;
     }
 
@@ -48,8 +51,8 @@
       background: linear-gradient(
         180deg,
         rgba(0, 0, 0, 0.22) 0%,
-        rgba(0, 0, 0, 0.06) 30%,
-        rgba(0, 0, 0, 0.16) 100%
+        rgba(0, 0, 0, 0.08) 34%,
+        rgba(0, 0, 0, 0.18) 100%
       );
       pointer-events: none;
       z-index: 0;
@@ -59,102 +62,110 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0.5;
+      opacity: 0.42;
     }
 
     .top-bar {
       position: relative;
       z-index: 2;
       width: 100%;
-      background: #000000;
+      background: rgba(0, 0, 0, 0.92);
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(8px);
     }
 
     .top-bar-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 22px 24px;
+      padding: 20px 24px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .company-logo {
-      height: 83px;
+      height: 78px;
       width: auto;
       display: block;
       opacity: 0.98;
-      filter: brightness(0.98);
     }
 
     .hero {
       position: relative;
       z-index: 1;
-      min-height: calc(100vh - 128px);
+      min-height: calc(100vh - 118px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 42px 20px 56px;
+      padding: 58px 20px 72px;
     }
 
     .hero-inner {
       width: 100%;
-      max-width: 960px;
+      max-width: 940px;
       text-align: center;
     }
 
     .headline {
-      font-size: clamp(2.35rem, 5.2vw, 4.6rem);
-      font-weight: 500;
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      margin: 0 auto 20px auto;
+      font-size: clamp(2.35rem, 5.1vw, 4.8rem);
+      font-weight: 300;
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      margin: 0 auto 24px;
       max-width: 860px;
       text-wrap: balance;
     }
 
     .divider {
-      width: 64px;
+      width: 48px;
       height: 1px;
-      background: rgba(255,255,255,0.16);
-      margin: 0 auto 22px auto;
+      margin: 0 auto 28px;
+      background: rgba(255, 255, 255, 0.11);
     }
 
     .subheadline {
-      font-size: 1rem;
-      line-height: 1.72;
-      color: rgba(255, 255, 255, 0.76);
-      max-width: 720px;
-      margin: 0 auto 10px auto;
+      font-size: 0.98rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 670px;
+      margin: 0 auto 18px;
     }
 
-    .subheadline-highlight {
-      font-size: 1.08rem;
-      line-height: 1.55;
-      font-weight: 600;
-      color: var(--accent);
-      max-width: 720px;
-      margin: 0 auto 38px auto;
+    .signal-line {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.78;
+      letter-spacing: 0.01em;
+      color: var(--signal);
+      max-width: 570px;
+      margin: 8px auto 56px;
     }
 
     .signup-panel {
-      max-width: 540px;
+      max-width: 560px;
       margin: 0 auto;
       padding: 18px;
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.048),
+        rgba(255, 255, 255, 0.024)
+      );
       backdrop-filter: blur(10px);
       box-shadow:
-        0 8px 28px rgba(0,0,0,0.18),
-        inset 0 1px 0 rgba(255,255,255,0.03);
+        0 10px 32px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.018);
     }
 
     .signup-label {
+      font-family: "IBM Plex Mono", monospace;
       font-size: 0.68rem;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.28em;
-      color: rgba(255,255,255,0.50);
+      letter-spacing: 0.26em;
+      color: rgba(255, 255, 255, 0.48);
       margin-bottom: 14px;
     }
 
@@ -166,81 +177,85 @@
     }
 
     .email-form input {
-      flex: 1 1 300px;
+      flex: 1 1 320px;
       min-width: 0;
       padding: 14px 16px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.14);
+      border: 1px solid rgba(255, 255, 255, 0.11);
       background: var(--input-bg);
       color: white;
-      font-size: 0.96rem;
+      font-family: "Inter", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
       outline: none;
       transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
     }
 
     .email-form input::placeholder {
-      color: rgba(255,255,255,0.38);
+      color: rgba(255, 255, 255, 0.34);
     }
 
     .email-form input:focus {
-      border-color: rgba(255,255,255,0.28);
-      background: rgba(255,255,255,0.08);
+      border-color: rgba(255, 255, 255, 0.23);
+      background: rgba(255, 255, 255, 0.065);
       transform: translateY(-1px);
     }
 
     .email-form button {
       padding: 14px 20px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
+      border: 1px solid rgba(255, 255, 255, 0.09);
       background: var(--button-bg);
       color: var(--button-text);
-      font-weight: 600;
-      font-size: 0.95rem;
+      font-family: "Inter", sans-serif;
+      font-size: 0.94rem;
+      font-weight: 500;
       cursor: pointer;
       transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
     }
 
     .email-form button:hover {
       transform: translateY(-1px);
-      opacity: 0.96;
-      background: #111111;
+      opacity: 0.97;
+      background: rgba(18, 18, 20, 0.95);
     }
 
     .build-note {
-      margin-top: 14px;
-      font-size: 0.88rem;
+      margin-top: 10px;
+      font-size: 0.84rem;
+      font-weight: 300;
       line-height: 1.6;
-      color: rgba(255,255,255,0.52);
+      color: rgba(255, 255, 255, 0.46);
     }
 
     @media (max-width: 640px) {
       .top-bar-inner {
-        padding: 18px 18px;
+        padding: 16px 18px;
       }
 
       .company-logo {
-        height: 67px;
+        height: 64px;
       }
 
       .hero {
-        min-height: calc(100vh - 108px);
-        padding: 36px 18px 52px;
+        min-height: calc(100vh - 96px);
+        padding: 42px 18px 58px;
       }
 
       .headline {
-        font-size: clamp(2rem, 8.2vw, 3rem);
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.01;
       }
 
       .subheadline {
-        font-size: 0.95rem;
-        line-height: 1.65;
-        margin-bottom: 10px;
+        font-size: 0.94rem;
+        line-height: 1.72;
       }
 
-      .subheadline-highlight {
-        font-size: 1rem;
-        line-height: 1.5;
-        margin-bottom: 30px;
+      .signal-line {
+        font-size: 0.96rem;
+        line-height: 1.68;
+        margin-bottom: 42px;
       }
 
       .signup-panel {
@@ -281,8 +296,8 @@
         Computing only what matters changes the economics of performance.
       </p>
 
-      <p class="subheadline-highlight">
-        sparsX delivers compute infrastructure for what comes next in AI and HPC.
+      <p class="signal-line">
+        sparsX is the compute infrastructure for what comes next in AI and HPC.
       </p>
 
       <div class="signup-panel">
@@ -290,7 +305,13 @@
 
         <div class="email-form">
           <form>
-            <input type="email" placeholder="Enter your email" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            />
             <button type="submit">Stay tuned</button>
           </form>
         </div>
@@ -324,7 +345,7 @@
             nodes.push({
               x: x + (Math.random() - 0.5) * 24,
               y: y + (Math.random() - 0.5) * 24,
-              r: Math.random() * 1.1 + 0.9
+              r: Math.random() * 1.05 + 0.85
             });
           }
         }
@@ -339,7 +360,8 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 170) {
-            ctx.strokeStyle = `rgba(255, 200, 140, ${0.04 - dist / 7000})`;
+            const alpha = Math.max(0, 0.035 - dist / 7000);
+            ctx.strokeStyle = `rgba(255, 206, 156, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -354,7 +376,7 @@
       nodes.forEach(node => {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 220, 180, 0.16)";
+        ctx.fillStyle = "rgba(255, 225, 190, 0.12)";
         ctx.fill();
       });
     }
