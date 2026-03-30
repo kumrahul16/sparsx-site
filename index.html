@@ -11,19 +11,24 @@
 
   <style>
     :root {
-      --text: #fff5ee;
-      --muted: rgba(255, 232, 214, 0.72);
-      --faint: rgba(255, 232, 214, 0.42);
+      --bg: #f8ede2;
+      --bg-soft: #f3dfcf;
+      --bg-warm: #f7e7d7;
+      --orange: #ff6a1a;
+      --orange-soft: #ffa45c;
+      --sand: #e8c7a8;
+      --text: #2a1c14;
+      --muted: rgba(42, 28, 20, 0.72);
+      --faint: rgba(42, 28, 20, 0.46);
 
-      --signal: #ff9a4a;
-      --signal-bright: #ff6a1a;
-      --signal-soft: #ffb97d;
+      --panel-bg: rgba(255, 250, 245, 0.48);
+      --panel-border: rgba(255, 106, 26, 0.22);
+      --input-bg: rgba(255, 255, 255, 0.62);
+      --input-border: rgba(255, 106, 26, 0.18);
 
-      --panel: rgba(255, 255, 255, 0.035);
-      --panel-border: rgba(255, 154, 74, 0.20);
-      --input-bg: rgba(255, 255, 255, 0.035);
-      --button-bg: rgba(18, 12, 8, 0.94);
-      --button-text: #fff5ee;
+      --button-bg: #2a1c14;
+      --button-text: #fff7f0;
+      --logo-chip-bg: rgba(42, 28, 20, 0.92);
     }
 
     * {
@@ -33,7 +38,7 @@
     html, body {
       margin: 0;
       min-height: 100%;
-      background: #000;
+      background: var(--bg);
     }
 
     body {
@@ -41,10 +46,10 @@
       color: var(--text);
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 18% 18%, rgba(255, 106, 26, 0.40), transparent 26%),
-        radial-gradient(circle at 78% 22%, rgba(255, 122, 47, 0.24), transparent 28%),
-        radial-gradient(circle at 52% 76%, rgba(255, 154, 74, 0.14), transparent 32%),
-        linear-gradient(180deg, #050403 0%, #0c0705 20%, #160b07 44%, #120805 68%, #060404 100%);
+        radial-gradient(circle at 18% 18%, rgba(255, 106, 26, 0.20), transparent 26%),
+        radial-gradient(circle at 82% 20%, rgba(255, 164, 92, 0.22), transparent 28%),
+        radial-gradient(circle at 52% 78%, rgba(232, 199, 168, 0.34), transparent 34%),
+        linear-gradient(180deg, #f8ede2 0%, #f6e7da 22%, #f4dfcf 52%, #f8ede2 100%);
       position: relative;
     }
 
@@ -53,22 +58,13 @@
       position: fixed;
       inset: 0;
       background:
+        radial-gradient(circle at 50% 34%, rgba(255, 106, 26, 0.08), transparent 20%),
         linear-gradient(
           180deg,
-          rgba(0, 0, 0, 0.12) 0%,
-          rgba(0, 0, 0, 0.04) 32%,
-          rgba(0, 0, 0, 0.16) 100%
+          rgba(255, 255, 255, 0.08) 0%,
+          rgba(255, 255, 255, 0.00) 28%,
+          rgba(255, 255, 255, 0.04) 100%
         );
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.02), transparent 24%);
       pointer-events: none;
       z-index: 0;
     }
@@ -77,7 +73,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0.52;
+      opacity: 0.55;
     }
 
     .top-bar {
@@ -85,35 +81,45 @@
       z-index: 2;
       width: 100%;
       background: transparent;
-      border-bottom: none;
-      backdrop-filter: none;
     }
 
     .top-bar-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 24px 8px;
+      padding: 26px 24px 10px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+    .logo-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--logo-chip-bg);
+      box-shadow:
+        0 10px 30px rgba(42, 28, 20, 0.10),
+        0 0 24px rgba(255, 106, 26, 0.12);
+    }
+
     .company-logo {
-      height: 78px;
+      height: 40px;
       width: auto;
       display: block;
       opacity: 0.99;
-      filter: drop-shadow(0 0 24px rgba(255, 106, 26, 0.16));
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.04));
     }
 
     .hero {
       position: relative;
       z-index: 1;
-      min-height: calc(100vh - 110px);
+      min-height: calc(100vh - 100px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px 72px;
+      padding: 36px 20px 72px;
     }
 
     .hero-inner {
@@ -122,38 +128,50 @@
       text-align: center;
     }
 
+    .headline-glow {
+      position: absolute;
+      left: 50%;
+      top: 18%;
+      transform: translateX(-50%);
+      width: min(760px, 88vw);
+      height: 340px;
+      background:
+        radial-gradient(circle, rgba(255, 106, 26, 0.18) 0%, rgba(255, 164, 92, 0.10) 34%, rgba(255, 106, 26, 0) 72%);
+      filter: blur(24px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
     .headline {
       font-size: clamp(2.5rem, 5.4vw, 5.2rem);
       font-weight: 300;
       line-height: 0.98;
       letter-spacing: -0.075em;
       margin: 0 auto 24px;
-      max-width: 940px;
+      max-width: 920px;
       text-wrap: balance;
       color: var(--text);
-      text-shadow:
-        0 0 28px rgba(255, 106, 26, 0.05),
-        0 0 10px rgba(255, 255, 255, 0.02);
     }
 
     .divider {
-      width: 84px;
-      height: 1px;
-      margin: 0 auto 30px;
+      width: 88px;
+      height: 2px;
+      margin: 0 auto 28px;
+      border-radius: 999px;
       background: linear-gradient(
         90deg,
         rgba(255, 106, 26, 0),
-        rgba(255, 106, 26, 0.90),
-        rgba(255, 154, 74, 0.98),
+        rgba(255, 106, 26, 0.9),
+        rgba(255, 164, 92, 0.9),
         rgba(255, 106, 26, 0)
       );
-      box-shadow: 0 0 18px rgba(255, 106, 26, 0.22);
+      box-shadow: 0 0 16px rgba(255, 106, 26, 0.12);
     }
 
     .subheadline {
       font-size: 1rem;
       font-weight: 300;
-      line-height: 1.82;
+      line-height: 1.85;
       color: var(--muted);
       max-width: 700px;
       margin: 0 auto 14px;
@@ -161,33 +179,26 @@
 
     .signal-line {
       font-size: clamp(1.24rem, 2.2vw, 1.62rem);
-      font-weight: 300;
-      line-height: 1.5;
+      font-weight: 400;
+      line-height: 1.48;
       letter-spacing: -0.015em;
-      max-width: 800px;
-      margin: 16px auto 64px;
-      color: var(--signal);
-      text-shadow:
-        0 0 22px rgba(255, 106, 26, 0.14),
-        0 0 8px rgba(255, 154, 74, 0.08);
+      max-width: 820px;
+      margin: 16px auto 58px;
+      color: var(--orange);
+      text-shadow: 0 0 20px rgba(255, 106, 26, 0.08);
     }
 
     .signup-panel {
-      max-width: 590px;
+      max-width: 600px;
       margin: 0 auto;
       padding: 18px;
       border: 1px solid var(--panel-border);
-      border-radius: 22px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.030),
-        rgba(255, 255, 255, 0.015)
-      );
+      border-radius: 24px;
+      background: var(--panel-bg);
       backdrop-filter: blur(12px);
       box-shadow:
-        0 16px 46px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(255,255,255,0.015),
-        0 0 30px rgba(255, 106, 26, 0.04);
+        0 18px 48px rgba(95, 54, 23, 0.08),
+        inset 0 1px 0 rgba(255,255,255,0.45);
     }
 
     .signup-label {
@@ -196,7 +207,7 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.26em;
-      color: rgba(255, 232, 214, 0.54);
+      color: rgba(42, 28, 20, 0.54);
       margin-bottom: 14px;
     }
 
@@ -212,57 +223,52 @@
       min-width: 0;
       padding: 14px 16px;
       border-radius: 14px;
-      border: 1px solid rgba(255, 154, 74, 0.20);
+      border: 1px solid var(--input-border);
       background: var(--input-bg);
       color: var(--text);
       font-family: "Sora", sans-serif;
       font-size: 0.95rem;
       font-weight: 300;
       outline: none;
-      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
     }
 
     .email-form input::placeholder {
-      color: rgba(255, 232, 214, 0.34);
+      color: rgba(42, 28, 20, 0.36);
     }
 
     .email-form input:focus {
-      border-color: rgba(255, 154, 74, 0.44);
-      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 106, 26, 0.44);
+      background: rgba(255, 255, 255, 0.76);
       box-shadow:
-        0 0 24px rgba(255, 106, 26, 0.12),
-        0 0 0 1px rgba(255, 154, 74, 0.06);
+        0 0 0 3px rgba(255, 106, 26, 0.08),
+        0 8px 24px rgba(255, 106, 26, 0.10);
       transform: translateY(-1px);
     }
 
     .email-form button {
       padding: 14px 20px;
       border-radius: 14px;
-      border: 1px solid rgba(255, 154, 74, 0.24);
-      background: linear-gradient(
-        180deg,
-        rgba(28, 18, 12, 0.98),
-        rgba(18, 12, 8, 0.98)
-      );
+      border: 1px solid rgba(42, 28, 20, 0.12);
+      background: var(--button-bg);
       color: var(--button-text);
       font-family: "Sora", sans-serif;
       font-size: 0.94rem;
       font-weight: 400;
       cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-      box-shadow: 0 0 18px rgba(255, 106, 26, 0.07);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      box-shadow:
+        0 10px 24px rgba(42, 28, 20, 0.14),
+        0 0 0 rgba(0,0,0,0);
     }
 
     .email-form button:hover {
       transform: translateY(-1px);
       opacity: 0.99;
-      border-color: rgba(255, 154, 74, 0.44);
-      box-shadow: 0 0 24px rgba(255, 106, 26, 0.14);
-      background: linear-gradient(
-        180deg,
-        rgba(34, 20, 12, 0.99),
-        rgba(22, 13, 8, 0.99)
-      );
+      background: #20150f;
+      box-shadow:
+        0 12px 28px rgba(42, 28, 20, 0.16),
+        0 0 20px rgba(255, 106, 26, 0.10);
     }
 
     .build-note {
@@ -270,26 +276,35 @@
       font-size: 0.84rem;
       font-weight: 300;
       line-height: 1.6;
-      color: rgba(255, 232, 214, 0.48);
+      color: var(--faint);
     }
 
     @media (max-width: 640px) {
       .top-bar-inner {
-        padding: 18px 18px 6px;
+        padding: 18px 18px 8px;
+      }
+
+      .logo-chip {
+        padding: 10px 16px;
       }
 
       .company-logo {
-        height: 64px;
+        height: 32px;
       }
 
       .hero {
-        min-height: calc(100vh - 90px);
-        padding: 36px 18px 58px;
+        min-height: calc(100vh - 82px);
+        padding: 30px 18px 52px;
+      }
+
+      .headline-glow {
+        top: 14%;
+        height: 260px;
       }
 
       .headline {
-        font-size: clamp(2rem, 8vw, 3rem);
-        line-height: 1.03;
+        font-size: clamp(2rem, 8vw, 3.1rem);
+        line-height: 1.02;
       }
 
       .subheadline {
@@ -298,8 +313,8 @@
       }
 
       .signal-line {
-        font-size: 1.1rem;
-        line-height: 1.56;
+        font-size: 1.08rem;
+        line-height: 1.55;
         margin-bottom: 42px;
       }
 
@@ -323,12 +338,16 @@
 
   <header class="top-bar">
     <div class="top-bar-inner">
-      <img src="logo.png" alt="sparsX logo" class="company-logo" />
+      <div class="logo-chip">
+        <img src="logo.svg" alt="sparsX logo" class="company-logo" />
+      </div>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-inner">
+      <div class="headline-glow"></div>
+
       <h1 class="headline">
         Compute Only What Matters.<br>
         Run Orders-of-Magnitude Faster.
@@ -373,7 +392,7 @@
     const ctx = canvas.getContext("2d");
 
     let nodes = [];
-    const spacing = 165;
+    const spacing = 170;
     const mouse = { x: null, y: null };
 
     function resizeCanvas() {
@@ -388,9 +407,9 @@
         for (let y = spacing / 2; y < canvas.height; y += spacing) {
           if (Math.random() > 0.80) {
             nodes.push({
-              x: x + (Math.random() - 0.5) * 26,
-              y: y + (Math.random() - 0.5) * 26,
-              r: Math.random() * 1.2 + 0.85,
+              x: x + (Math.random() - 0.5) * 24,
+              y: y + (Math.random() - 0.5) * 24,
+              r: Math.random() * 1.2 + 0.9,
               alpha: Math.random() * 0.12 + 0.10
             });
           }
@@ -405,9 +424,9 @@
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 170) {
-            const alpha = Math.max(0, 0.042 - dist / 6500);
-            ctx.strokeStyle = `rgba(255, 154, 74, ${alpha})`;
+          if (dist < 175) {
+            const alpha = Math.max(0, 0.045 - dist / 6500);
+            ctx.strokeStyle = `rgba(255, 106, 26, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -422,7 +441,7 @@
       nodes.forEach(node => {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 154, 74, ${node.alpha})`;
+        ctx.fillStyle = `rgba(255, 164, 92, ${node.alpha})`;
         ctx.fill();
       });
     }
@@ -430,13 +449,13 @@
     function drawMouseGlow() {
       if (mouse.x === null || mouse.y === null) return;
 
-      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 210);
-      gradient.addColorStop(0, "rgba(255, 106, 26, 0.13)");
-      gradient.addColorStop(0.38, "rgba(255, 154, 74, 0.08)");
+      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 180);
+      gradient.addColorStop(0, "rgba(255, 106, 26, 0.14)");
+      gradient.addColorStop(0.42, "rgba(255, 164, 92, 0.08)");
       gradient.addColorStop(1, "rgba(255, 106, 26, 0)");
       ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 210, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
       ctx.fill();
     }
 
