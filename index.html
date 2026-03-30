@@ -11,15 +11,21 @@
 
   <style>
     :root {
-      --text: rgba(255, 255, 255, 0.94);
-      --muted: rgba(255, 255, 255, 0.68);
-      --faint: rgba(255, 255, 255, 0.44);
-      --panel: rgba(255, 255, 255, 0.045);
-      --panel-border: rgba(255, 255, 255, 0.08);
-      --input-bg: rgba(255, 255, 255, 0.04);
-      --button-bg: rgba(8, 8, 10, 0.92);
+      --text: rgba(255, 248, 242, 0.95);
+      --muted: rgba(255, 242, 232, 0.72);
+      --faint: rgba(255, 240, 230, 0.46);
+
+      --signal: rgba(255, 245, 238, 0.96);
+      --copper: #c9783d;
+      --copper-soft: #e0a36f;
+      --cobalt: #3f6fff;
+      --cobalt-soft: #79a4ff;
+
+      --panel: rgba(255, 255, 255, 0.05);
+      --panel-border: rgba(255, 255, 255, 0.10);
+      --input-bg: rgba(255, 255, 255, 0.045);
+      --button-bg: rgba(10, 12, 20, 0.84);
       --button-text: #f8f4ef;
-      --signal: rgba(255, 240, 230, 0.96);
     }
 
     * {
@@ -37,10 +43,11 @@
       color: var(--text);
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 18% 20%, rgba(255, 132, 46, 0.40), transparent 30%),
-        radial-gradient(circle at 78% 26%, rgba(255, 110, 22, 0.24), transparent 32%),
-        radial-gradient(circle at 54% 78%, rgba(255, 164, 94, 0.16), transparent 35%),
-        linear-gradient(180deg, #160903 0%, #251005 18%, #451907 52%, #241005 100%);
+        radial-gradient(circle at 18% 20%, rgba(201, 120, 61, 0.34), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(63, 111, 255, 0.26), transparent 30%),
+        radial-gradient(circle at 52% 78%, rgba(224, 163, 111, 0.16), transparent 34%),
+        radial-gradient(circle at 74% 70%, rgba(121, 164, 255, 0.12), transparent 26%),
+        linear-gradient(180deg, #09060a 0%, #12090b 22%, #1a0e0d 48%, #0d111d 76%, #08090f 100%);
       position: relative;
     }
 
@@ -48,12 +55,23 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.18) 0%,
-        rgba(0, 0, 0, 0.07) 34%,
-        rgba(0, 0, 0, 0.16) 100%
-      );
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.18) 0%,
+          rgba(0, 0, 0, 0.05) 35%,
+          rgba(0, 0, 0, 0.18) 100%
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 34%, rgba(255,255,255,0.025), transparent 24%);
       pointer-events: none;
       z-index: 0;
     }
@@ -62,7 +80,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0.42;
+      opacity: 0.5;
     }
 
     .top-bar {
@@ -88,6 +106,8 @@
       width: auto;
       display: block;
       opacity: 0.98;
+      filter: drop-shadow(0 0 22px rgba(201, 120, 61, 0.10))
+              drop-shadow(0 0 26px rgba(63, 111, 255, 0.08));
     }
 
     .hero {
@@ -102,25 +122,33 @@
 
     .hero-inner {
       width: 100%;
-      max-width: 960px;
+      max-width: 980px;
       text-align: center;
     }
 
     .headline {
-      font-size: clamp(2.35rem, 5.1vw, 4.8rem);
+      font-size: clamp(2.4rem, 5.2vw, 5rem);
       font-weight: 300;
       line-height: 1;
-      letter-spacing: -0.065em;
+      letter-spacing: -0.07em;
       margin: 0 auto 24px;
-      max-width: 900px;
+      max-width: 920px;
       text-wrap: balance;
+      text-shadow: 0 0 30px rgba(255,255,255,0.02);
     }
 
     .divider {
-      width: 48px;
+      width: 74px;
       height: 1px;
-      margin: 0 auto 28px;
-      background: rgba(255, 255, 255, 0.11);
+      margin: 0 auto 30px;
+      background: linear-gradient(
+        90deg,
+        rgba(201, 120, 61, 0),
+        rgba(201, 120, 61, 0.75),
+        rgba(63, 111, 255, 0.75),
+        rgba(63, 111, 255, 0)
+      );
+      box-shadow: 0 0 14px rgba(63, 111, 255, 0.14);
     }
 
     .subheadline {
@@ -128,35 +156,44 @@
       font-weight: 300;
       line-height: 1.82;
       color: var(--muted);
-      max-width: 690px;
+      max-width: 700px;
       margin: 0 auto 14px;
     }
 
     .signal-line {
-      font-size: clamp(1.18rem, 2vw, 1.5rem);
+      font-size: clamp(1.22rem, 2.1vw, 1.58rem);
       font-weight: 300;
       line-height: 1.5;
-      letter-spacing: -0.01em;
-      color: var(--signal);
-      max-width: 760px;
+      letter-spacing: -0.012em;
+      max-width: 780px;
       margin: 16px auto 64px;
+      color: var(--signal);
+      text-shadow:
+        0 0 18px rgba(63, 111, 255, 0.10),
+        0 0 18px rgba(201, 120, 61, 0.08);
+    }
+
+    .signal-line .copper {
+      color: var(--copper-soft);
+    }
+
+    .signal-line .cobalt {
+      color: var(--cobalt-soft);
     }
 
     .signup-panel {
-      max-width: 560px;
+      max-width: 580px;
       margin: 0 auto;
       padding: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.10);
       border-radius: 22px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.048),
-        rgba(255, 255, 255, 0.024)
-      );
-      backdrop-filter: blur(10px);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.022));
+      backdrop-filter: blur(12px);
       box-shadow:
-        0 10px 32px rgba(0, 0, 0, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.018);
+        0 14px 42px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255,255,255,0.02),
+        0 0 0 1px rgba(63, 111, 255, 0.04);
     }
 
     .signup-label {
@@ -165,7 +202,7 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.26em;
-      color: rgba(255, 255, 255, 0.48);
+      color: rgba(255, 245, 238, 0.52);
       margin-bottom: 14px;
     }
 
@@ -181,43 +218,53 @@
       min-width: 0;
       padding: 14px 16px;
       border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(255,255,255,0.12);
       background: var(--input-bg);
       color: white;
       font-family: "Sora", sans-serif;
       font-size: 0.95rem;
       font-weight: 300;
       outline: none;
-      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
     .email-form input::placeholder {
-      color: rgba(255, 255, 255, 0.34);
+      color: rgba(255,255,255,0.34);
     }
 
     .email-form input:focus {
-      border-color: rgba(255, 255, 255, 0.23);
-      background: rgba(255, 255, 255, 0.065);
+      border-color: rgba(121, 164, 255, 0.44);
+      background: rgba(255,255,255,0.07);
+      box-shadow:
+        0 0 0 1px rgba(63, 111, 255, 0.12),
+        0 0 22px rgba(63, 111, 255, 0.08);
       transform: translateY(-1px);
     }
 
     .email-form button {
       padding: 14px 20px;
       border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      background: var(--button-bg);
+      border: 1px solid rgba(121, 164, 255, 0.20);
+      background:
+        linear-gradient(135deg, rgba(15, 18, 30, 0.95), rgba(12, 12, 16, 0.95));
       color: var(--button-text);
       font-family: "Sora", sans-serif;
       font-size: 0.94rem;
       font-weight: 400;
       cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      box-shadow:
+        0 0 0 rgba(0,0,0,0),
+        0 0 18px rgba(63, 111, 255, 0.06);
     }
 
     .email-form button:hover {
       transform: translateY(-1px);
-      opacity: 0.97;
-      background: rgba(18, 18, 20, 0.95);
+      opacity: 0.98;
+      border-color: rgba(201, 120, 61, 0.36);
+      box-shadow:
+        0 0 18px rgba(63, 111, 255, 0.10),
+        0 0 18px rgba(201, 120, 61, 0.08);
     }
 
     .build-note {
@@ -225,7 +272,7 @@
       font-size: 0.84rem;
       font-weight: 300;
       line-height: 1.6;
-      color: rgba(255, 255, 255, 0.46);
+      color: rgba(255, 241, 230, 0.48);
     }
 
     @media (max-width: 640px) {
@@ -253,8 +300,8 @@
       }
 
       .signal-line {
-        font-size: 1.08rem;
-        line-height: 1.55;
+        font-size: 1.1rem;
+        line-height: 1.56;
         margin-bottom: 42px;
       }
 
@@ -297,7 +344,8 @@
       </p>
 
       <p class="signal-line">
-        sparsX is the compute infrastructure for what comes next in AI and HPC.
+        sparsX is the <span class="copper">compute infrastructure</span> for what comes next in
+        <span class="cobalt">AI and HPC</span>.
       </p>
 
       <div class="signup-panel">
@@ -342,10 +390,12 @@
       for (let x = spacing / 2; x < canvas.width; x += spacing) {
         for (let y = spacing / 2; y < canvas.height; y += spacing) {
           if (Math.random() > 0.77) {
+            const isCobalt = Math.random() > 0.7;
             nodes.push({
               x: x + (Math.random() - 0.5) * 24,
               y: y + (Math.random() - 0.5) * 24,
-              r: Math.random() * 1.05 + 0.85
+              r: Math.random() * 1.15 + 0.9,
+              type: isCobalt ? "cobalt" : "copper"
             });
           }
         }
@@ -360,8 +410,13 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 170) {
-            const alpha = Math.max(0, 0.035 - dist / 7000);
-            ctx.strokeStyle = `rgba(255, 206, 156, ${alpha})`;
+            const alpha = Math.max(0, 0.04 - dist / 7000);
+            const mixed = nodes[i].type === "cobalt" || nodes[j].type === "cobalt";
+
+            ctx.strokeStyle = mixed
+              ? `rgba(121, 164, 255, ${alpha})`
+              : `rgba(224, 163, 111, ${alpha})`;
+
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -376,7 +431,9 @@
       nodes.forEach(node => {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 225, 190, 0.12)";
+        ctx.fillStyle = node.type === "cobalt"
+          ? "rgba(121, 164, 255, 0.20)"
+          : "rgba(224, 163, 111, 0.16)";
         ctx.fill();
       });
     }
@@ -384,12 +441,20 @@
     function drawMouseGlow() {
       if (mouse.x === null || mouse.y === null) return;
 
-      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 190);
-      gradient.addColorStop(0, "rgba(255, 145, 52, 0.10)");
-      gradient.addColorStop(1, "rgba(255, 145, 52, 0)");
-      ctx.fillStyle = gradient;
+      const warmGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 180);
+      warmGlow.addColorStop(0, "rgba(201, 120, 61, 0.08)");
+      warmGlow.addColorStop(1, "rgba(201, 120, 61, 0)");
+      ctx.fillStyle = warmGlow;
       ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 190, 0, Math.PI * 2);
+      ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
+      ctx.fill();
+
+      const coolGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 120);
+      coolGlow.addColorStop(0, "rgba(63, 111, 255, 0.08)");
+      coolGlow.addColorStop(1, "rgba(63, 111, 255, 0)");
+      ctx.fillStyle = coolGlow;
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 120, 0, Math.PI * 2);
       ctx.fill();
     }
 
