@@ -14,10 +14,10 @@
       --text: #f4ede6;
       --muted: rgba(234, 217, 200, 0.72);
       --faint: rgba(234, 217, 200, 0.44);
-      --signal: #e2a46e;
-      --signal-soft: #c96e33;
+      --signal: #ffb06a;
+      --signal-soft: #ff7a2f;
       --panel: rgba(255, 255, 255, 0.035);
-      --panel-border: rgba(226, 164, 110, 0.14);
+      --panel-border: rgba(255, 176, 106, 0.18);
       --input-bg: rgba(255, 255, 255, 0.035);
       --button-bg: rgba(18, 13, 10, 0.92);
       --button-text: #f4ede6;
@@ -38,10 +38,10 @@
       color: var(--text);
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 18% 18%, rgba(201, 110, 51, 0.28), transparent 28%),
-        radial-gradient(circle at 78% 26%, rgba(146, 78, 34, 0.18), transparent 30%),
-        radial-gradient(circle at 52% 78%, rgba(226, 164, 110, 0.10), transparent 34%),
-        linear-gradient(180deg, #080605 0%, #100b08 22%, #19110d 52%, #0e0907 100%);
+        radial-gradient(circle at 18% 18%, rgba(255, 122, 47, 0.34), transparent 28%),
+        radial-gradient(circle at 78% 26%, rgba(201, 96, 34, 0.20), transparent 30%),
+        radial-gradient(circle at 52% 78%, rgba(255, 176, 106, 0.12), transparent 34%),
+        linear-gradient(180deg, #080605 0%, #120b08 22%, #1c120d 52%, #0f0907 100%);
       position: relative;
     }
 
@@ -98,7 +98,7 @@
       width: auto;
       display: block;
       opacity: 0.98;
-      filter: drop-shadow(0 0 18px rgba(201, 110, 51, 0.12));
+      filter: drop-shadow(0 0 18px rgba(255, 122, 47, 0.14));
     }
 
     .hero {
@@ -135,12 +135,12 @@
       margin: 0 auto 30px;
       background: linear-gradient(
         90deg,
-        rgba(201, 110, 51, 0),
-        rgba(201, 110, 51, 0.72),
-        rgba(226, 164, 110, 0.82),
-        rgba(201, 110, 51, 0)
+        rgba(255, 122, 47, 0),
+        rgba(255, 122, 47, 0.82),
+        rgba(255, 176, 106, 0.92),
+        rgba(255, 122, 47, 0)
       );
-      box-shadow: 0 0 14px rgba(201, 110, 51, 0.12);
+      box-shadow: 0 0 14px rgba(255, 122, 47, 0.16);
     }
 
     .subheadline {
@@ -161,8 +161,8 @@
       margin: 16px auto 64px;
       color: var(--signal);
       text-shadow:
-        0 0 20px rgba(201, 110, 51, 0.10),
-        0 0 8px rgba(226, 164, 110, 0.05);
+        0 0 20px rgba(255, 122, 47, 0.10),
+        0 0 8px rgba(255, 176, 106, 0.05);
     }
 
     .signup-panel {
@@ -204,7 +204,7 @@
       min-width: 0;
       padding: 14px 16px;
       border-radius: 14px;
-      border: 1px solid rgba(226, 164, 110, 0.14);
+      border: 1px solid rgba(255, 176, 106, 0.18);
       background: var(--input-bg);
       color: var(--text);
       font-family: "Sora", sans-serif;
@@ -219,16 +219,16 @@
     }
 
     .email-form input:focus {
-      border-color: rgba(226, 164, 110, 0.34);
+      border-color: rgba(255, 176, 106, 0.38);
       background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 0 22px rgba(201, 110, 51, 0.08);
+      box-shadow: 0 0 22px rgba(255, 122, 47, 0.10);
       transform: translateY(-1px);
     }
 
     .email-form button {
       padding: 14px 20px;
       border-radius: 14px;
-      border: 1px solid rgba(226, 164, 110, 0.18);
+      border: 1px solid rgba(255, 176, 106, 0.22);
       background: linear-gradient(
         180deg,
         rgba(26, 18, 14, 0.96),
@@ -240,14 +240,14 @@
       font-weight: 400;
       cursor: pointer;
       transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 0 18px rgba(201, 110, 51, 0.05);
+      box-shadow: 0 0 18px rgba(255, 122, 47, 0.06);
     }
 
     .email-form button:hover {
       transform: translateY(-1px);
       opacity: 0.98;
-      border-color: rgba(226, 164, 110, 0.34);
-      box-shadow: 0 0 20px rgba(201, 110, 51, 0.10);
+      border-color: rgba(255, 176, 106, 0.40);
+      box-shadow: 0 0 20px rgba(255, 122, 47, 0.12);
     }
 
     .build-note {
@@ -392,7 +392,7 @@
 
           if (dist < 170) {
             const alpha = Math.max(0, 0.035 - dist / 7000);
-            ctx.strokeStyle = `rgba(226, 164, 110, ${alpha})`;
+            ctx.strokeStyle = `rgba(255, 176, 106, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -407,7 +407,7 @@
       nodes.forEach(node => {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(226, 164, 110, ${node.alpha})`;
+        ctx.fillStyle = `rgba(255, 176, 106, ${node.alpha})`;
         ctx.fill();
       });
     }
@@ -416,9 +416,9 @@
       if (mouse.x === null || mouse.y === null) return;
 
       const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 190);
-      gradient.addColorStop(0, "rgba(201, 110, 51, 0.08)");
-      gradient.addColorStop(0.45, "rgba(226, 164, 110, 0.05)");
-      gradient.addColorStop(1, "rgba(201, 110, 51, 0)");
+      gradient.addColorStop(0, "rgba(255, 122, 47, 0.10)");
+      gradient.addColorStop(0.45, "rgba(255, 176, 106, 0.06)");
+      gradient.addColorStop(1, "rgba(255, 122, 47, 0)");
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, 190, 0, Math.PI * 2);
