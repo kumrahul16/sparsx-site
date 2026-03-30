@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -19,7 +19,7 @@
       --input-bg: rgba(255, 255, 255, 0.04);
       --button-bg: rgba(8, 8, 10, 0.92);
       --button-text: #f8f4ef;
-      --signal: rgba(255, 236, 220, 0.92);
+      --signal: rgba(255, 240, 230, 0.96);
     }
 
     * {
@@ -33,7 +33,7 @@
     }
 
     body {
-      font-family: "Inter", sans-serif;
+      font-family: "Sora", sans-serif;
       color: var(--text);
       overflow-x: hidden;
       background:
@@ -50,9 +50,9 @@
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0.22) 0%,
-        rgba(0, 0, 0, 0.08) 34%,
-        rgba(0, 0, 0, 0.18) 100%
+        rgba(0, 0, 0, 0.18) 0%,
+        rgba(0, 0, 0, 0.07) 34%,
+        rgba(0, 0, 0, 0.16) 100%
       );
       pointer-events: none;
       z-index: 0;
@@ -69,15 +69,15 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      background: rgba(0, 0, 0, 0.92);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(8px);
+      background: transparent;
+      border-bottom: none;
+      backdrop-filter: none;
     }
 
     .top-bar-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px 24px;
+      padding: 24px 24px 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -93,26 +93,26 @@
     .hero {
       position: relative;
       z-index: 1;
-      min-height: calc(100vh - 118px);
+      min-height: calc(100vh - 110px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 58px 20px 72px;
+      padding: 40px 20px 72px;
     }
 
     .hero-inner {
       width: 100%;
-      max-width: 940px;
+      max-width: 960px;
       text-align: center;
     }
 
     .headline {
       font-size: clamp(2.35rem, 5.1vw, 4.8rem);
       font-weight: 300;
-      line-height: 0.98;
+      line-height: 1;
       letter-spacing: -0.065em;
       margin: 0 auto 24px;
-      max-width: 860px;
+      max-width: 900px;
       text-wrap: balance;
     }
 
@@ -124,22 +124,22 @@
     }
 
     .subheadline {
-      font-size: 0.98rem;
+      font-size: 1rem;
       font-weight: 300;
-      line-height: 1.85;
+      line-height: 1.82;
       color: var(--muted);
-      max-width: 670px;
-      margin: 0 auto 18px;
+      max-width: 690px;
+      margin: 0 auto 14px;
     }
 
     .signal-line {
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.78;
-      letter-spacing: 0.01em;
+      font-size: clamp(1.18rem, 2vw, 1.5rem);
+      font-weight: 300;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
       color: var(--signal);
-      max-width: 570px;
-      margin: 8px auto 56px;
+      max-width: 760px;
+      margin: 16px auto 64px;
     }
 
     .signup-panel {
@@ -184,7 +184,7 @@
       border: 1px solid rgba(255, 255, 255, 0.11);
       background: var(--input-bg);
       color: white;
-      font-family: "Inter", sans-serif;
+      font-family: "Sora", sans-serif;
       font-size: 0.95rem;
       font-weight: 300;
       outline: none;
@@ -207,9 +207,9 @@
       border: 1px solid rgba(255, 255, 255, 0.09);
       background: var(--button-bg);
       color: var(--button-text);
-      font-family: "Inter", sans-serif;
+      font-family: "Sora", sans-serif;
       font-size: 0.94rem;
-      font-weight: 500;
+      font-weight: 400;
       cursor: pointer;
       transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
     }
@@ -230,7 +230,7 @@
 
     @media (max-width: 640px) {
       .top-bar-inner {
-        padding: 16px 18px;
+        padding: 18px 18px 6px;
       }
 
       .company-logo {
@@ -238,23 +238,23 @@
       }
 
       .hero {
-        min-height: calc(100vh - 96px);
-        padding: 42px 18px 58px;
+        min-height: calc(100vh - 90px);
+        padding: 36px 18px 58px;
       }
 
       .headline {
         font-size: clamp(2rem, 8vw, 3rem);
-        line-height: 1.01;
+        line-height: 1.03;
       }
 
       .subheadline {
-        font-size: 0.94rem;
+        font-size: 0.95rem;
         line-height: 1.72;
       }
 
       .signal-line {
-        font-size: 0.96rem;
-        line-height: 1.68;
+        font-size: 1.08rem;
+        line-height: 1.55;
         margin-bottom: 42px;
       }
 
