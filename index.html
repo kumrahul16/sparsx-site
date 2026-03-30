@@ -14,10 +14,10 @@
       --faint: rgba(255, 255, 255, 0.42);
       --panel: rgba(255, 255, 255, 0.04);
       --panel-border: rgba(255, 255, 255, 0.08);
-      --input-bg: rgba(255, 255, 255, 0.04);
+      --input-bg: rgba(255, 255, 255, 0.05);
       --button-bg: #0a0a0a;
       --button-text: #f7f2eb;
-      --accent: #e7a56f;
+      --accent: #ff9a3d;
     }
 
     * {
@@ -34,10 +34,10 @@
       color: var(--text);
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 18% 22%, rgba(191, 109, 44, 0.22), transparent 28%),
-        radial-gradient(circle at 82% 30%, rgba(146, 76, 29, 0.14), transparent 30%),
-        radial-gradient(circle at 50% 82%, rgba(108, 55, 20, 0.16), transparent 34%),
-        linear-gradient(180deg, #040404 0%, #0c0806 18%, #140e09 48%, #110c08 100%);
+        radial-gradient(circle at 18% 22%, rgba(255, 140, 60, 0.34), transparent 30%),
+        radial-gradient(circle at 82% 30%, rgba(255, 110, 28, 0.24), transparent 32%),
+        radial-gradient(circle at 50% 82%, rgba(255, 160, 72, 0.18), transparent 36%),
+        linear-gradient(180deg, #1a0d05 0%, #2a1206 18%, #4a1c08 52%, #2b1207 100%);
       position: relative;
     }
 
@@ -47,9 +47,9 @@
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0.42) 0%,
-        rgba(0, 0, 0, 0.12) 26%,
-        rgba(0, 0, 0, 0.24) 100%
+        rgba(0, 0, 0, 0.22) 0%,
+        rgba(0, 0, 0, 0.06) 30%,
+        rgba(0, 0, 0, 0.16) 100%
       );
       pointer-events: none;
       z-index: 0;
@@ -59,7 +59,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0.42;
+      opacity: 0.5;
     }
 
     .top-bar {
@@ -116,14 +116,14 @@
     .divider {
       width: 64px;
       height: 1px;
-      background: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.16);
       margin: 0 auto 22px auto;
     }
 
     .subheadline {
       font-size: 1rem;
       line-height: 1.72;
-      color: rgba(255, 255, 255, 0.70);
+      color: rgba(255, 255, 255, 0.76);
       max-width: 720px;
       margin: 0 auto 10px auto;
     }
@@ -141,20 +141,20 @@
       max-width: 540px;
       margin: 0 auto;
       padding: 18px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
       border-radius: 20px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.025));
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
       backdrop-filter: blur(10px);
       box-shadow:
-        0 8px 28px rgba(0,0,0,0.14),
-        inset 0 1px 0 rgba(255,255,255,0.02);
+        0 8px 28px rgba(0,0,0,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.03);
     }
 
     .signup-label {
       font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.28em;
-      color: rgba(255,255,255,0.46);
+      color: rgba(255,255,255,0.50);
       margin-bottom: 14px;
     }
 
@@ -170,7 +170,7 @@
       min-width: 0;
       padding: 14px 16px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
       background: var(--input-bg);
       color: white;
       font-size: 0.96rem;
@@ -179,19 +179,19 @@
     }
 
     .email-form input::placeholder {
-      color: rgba(255,255,255,0.32);
+      color: rgba(255,255,255,0.38);
     }
 
     .email-form input:focus {
-      border-color: rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.08);
       transform: translateY(-1px);
     }
 
     .email-form button {
       padding: 14px 20px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
       background: var(--button-bg);
       color: var(--button-text);
       font-weight: 600;
@@ -210,7 +210,7 @@
       margin-top: 14px;
       font-size: 0.88rem;
       line-height: 1.6;
-      color: rgba(255,255,255,0.46);
+      color: rgba(255,255,255,0.52);
     }
 
     @media (max-width: 640px) {
@@ -339,7 +339,7 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 170) {
-            ctx.strokeStyle = `rgba(255, 214, 170, ${0.026 - dist / 9000})`;
+            ctx.strokeStyle = `rgba(255, 200, 140, ${0.04 - dist / 7000})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -354,7 +354,7 @@
       nodes.forEach(node => {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 224, 196, 0.11)";
+        ctx.fillStyle = "rgba(255, 220, 180, 0.16)";
         ctx.fill();
       });
     }
@@ -363,8 +363,8 @@
       if (mouse.x === null || mouse.y === null) return;
 
       const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 190);
-      gradient.addColorStop(0, "rgba(217, 126, 52, 0.05)");
-      gradient.addColorStop(1, "rgba(217, 126, 52, 0)");
+      gradient.addColorStop(0, "rgba(255, 145, 52, 0.10)");
+      gradient.addColorStop(1, "rgba(255, 145, 52, 0)");
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, 190, 0, Math.PI * 2);
