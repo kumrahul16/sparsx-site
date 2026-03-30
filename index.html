@@ -11,19 +11,22 @@
 
   <style>
     :root {
-      --bg: #dd571c;
-      --bg-deep: #c84a14;
-      --bg-soft: #ef7a3f;
+      --bg: #f8ede2;
+      --bg-soft: #f3dfcf;
+      --bg-warm: #f7e7d7;
+
+      --orange: #ff6a1a;
+      --orange-soft: #ffa45c;
+      --sand: #e8c7a8;
 
       --text: #2a1c14;
-      --muted: rgba(42, 28, 20, 0.78);
-      --faint: rgba(42, 28, 20, 0.58);
+      --muted: rgba(42, 28, 20, 0.72);
+      --faint: rgba(42, 28, 20, 0.46);
 
       --signal: #2f160e;
-      --signal-soft: #4a2414;
 
-      --input-bg: rgba(255, 250, 245, 0.38);
-      --input-border: rgba(42, 28, 20, 0.16);
+      --input-bg: rgba(255, 255, 255, 0.72);
+      --input-border: rgba(255, 106, 26, 0.18);
 
       --button-bg: #2a1c14;
       --button-text: #fff7f0;
@@ -48,10 +51,10 @@
       color: var(--text);
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 18% 18%, rgba(255, 190, 140, 0.18), transparent 24%),
-        radial-gradient(circle at 82% 20%, rgba(255, 120, 60, 0.22), transparent 28%),
-        radial-gradient(circle at 52% 78%, rgba(160, 46, 6, 0.16), transparent 34%),
-        linear-gradient(180deg, #f06e31 0%, #dd571c 24%, #cf4d16 54%, #b94112 100%);
+        radial-gradient(circle at 18% 18%, rgba(255, 106, 26, 0.20), transparent 26%),
+        radial-gradient(circle at 82% 20%, rgba(255, 164, 92, 0.22), transparent 28%),
+        radial-gradient(circle at 52% 78%, rgba(232, 199, 168, 0.34), transparent 34%),
+        linear-gradient(180deg, #f8ede2 0%, #f6e7da 22%, #f4dfcf 52%, #f8ede2 100%);
       position: relative;
     }
 
@@ -60,12 +63,12 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 50% 34%, rgba(255, 235, 220, 0.10), transparent 20%),
+        radial-gradient(circle at 50% 34%, rgba(255, 106, 26, 0.08), transparent 20%),
         linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.05) 0%,
+          rgba(255, 255, 255, 0.08) 0%,
           rgba(255, 255, 255, 0.00) 28%,
-          rgba(0, 0, 0, 0.08) 100%
+          rgba(255, 255, 255, 0.04) 100%
         );
       pointer-events: none;
       z-index: 0;
@@ -75,7 +78,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0.5;
+      opacity: 0.55;
     }
 
     .top-bar {
@@ -138,7 +141,7 @@
       width: min(760px, 88vw);
       height: 340px;
       background:
-        radial-gradient(circle, rgba(255, 235, 220, 0.18) 0%, rgba(255, 180, 120, 0.10) 34%, rgba(255, 106, 26, 0) 72%);
+        radial-gradient(circle, rgba(255, 106, 26, 0.18) 0%, rgba(255, 164, 92, 0.10) 34%, rgba(255, 106, 26, 0) 72%);
       filter: blur(24px);
       pointer-events: none;
       z-index: -1;
@@ -224,7 +227,7 @@
 
     .email-form input:focus {
       border-color: rgba(42, 28, 20, 0.28);
-      background: rgba(255, 255, 255, 0.48);
+      background: rgba(255, 255, 255, 0.82);
       box-shadow:
         0 0 0 3px rgba(42, 28, 20, 0.05),
         0 8px 24px rgba(42, 28, 20, 0.08);
