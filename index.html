@@ -11,20 +11,21 @@
 
   <style>
     :root {
-      --bg: #f8ede2;
-      --bg-soft: #f3dfcf;
-      --bg-warm: #f7e7d7;
-      --orange: #ff6a1a;
-      --orange-soft: #ffa45c;
-      --sand: #e8c7a8;
-      --text: #2a1c14;
-      --muted: rgba(42, 28, 20, 0.72);
-      --faint: rgba(42, 28, 20, 0.46);
+      --bg: #dd571c;
+      --bg-deep: #c84a14;
+      --bg-soft: #ef7a3f;
 
-      --panel-bg: rgba(255, 250, 245, 0.48);
-      --panel-border: rgba(255, 106, 26, 0.22);
-      --input-bg: rgba(255, 255, 255, 0.62);
-      --input-border: rgba(255, 106, 26, 0.18);
+      --text: #2a1c14;
+      --muted: rgba(42, 28, 20, 0.78);
+      --faint: rgba(42, 28, 20, 0.58);
+
+      --signal: #4a2414;
+      --signal-soft: #6a3018;
+
+      --panel-bg: rgba(255, 244, 236, 0.22);
+      --panel-border: rgba(42, 28, 20, 0.14);
+      --input-bg: rgba(255, 250, 245, 0.38);
+      --input-border: rgba(42, 28, 20, 0.16);
 
       --button-bg: #2a1c14;
       --button-text: #fff7f0;
@@ -45,10 +46,10 @@
       color: var(--text);
       overflow-x: hidden;
       background:
-        radial-gradient(circle at 18% 18%, rgba(255, 106, 26, 0.20), transparent 26%),
-        radial-gradient(circle at 82% 20%, rgba(255, 164, 92, 0.22), transparent 28%),
-        radial-gradient(circle at 52% 78%, rgba(232, 199, 168, 0.34), transparent 34%),
-        linear-gradient(180deg, #f8ede2 0%, #f6e7da 22%, #f4dfcf 52%, #f8ede2 100%);
+        radial-gradient(circle at 18% 18%, rgba(255, 190, 140, 0.18), transparent 24%),
+        radial-gradient(circle at 82% 20%, rgba(255, 120, 60, 0.22), transparent 28%),
+        radial-gradient(circle at 52% 78%, rgba(160, 46, 6, 0.16), transparent 34%),
+        linear-gradient(180deg, #f06e31 0%, #dd571c 24%, #cf4d16 54%, #b94112 100%);
       position: relative;
     }
 
@@ -57,12 +58,12 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 50% 34%, rgba(255, 106, 26, 0.08), transparent 20%),
+        radial-gradient(circle at 50% 34%, rgba(255, 235, 220, 0.10), transparent 20%),
         linear-gradient(
           180deg,
-          rgba(255, 255, 255, 0.08) 0%,
+          rgba(255, 255, 255, 0.05) 0%,
           rgba(255, 255, 255, 0.00) 28%,
-          rgba(255, 255, 255, 0.04) 100%
+          rgba(0, 0, 0, 0.08) 100%
         );
       pointer-events: none;
       z-index: 0;
@@ -72,7 +73,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      opacity: 0.55;
+      opacity: 0.5;
     }
 
     .top-bar {
@@ -95,8 +96,8 @@
       height: 80px;
       width: auto;
       display: block;
-      opacity: 0.99;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,0.04));
+      opacity: 1;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.08));
     }
 
     .hero {
@@ -123,7 +124,7 @@
       width: min(760px, 88vw);
       height: 340px;
       background:
-        radial-gradient(circle, rgba(255, 106, 26, 0.18) 0%, rgba(255, 164, 92, 0.10) 34%, rgba(255, 106, 26, 0) 72%);
+        radial-gradient(circle, rgba(255, 235, 220, 0.18) 0%, rgba(255, 180, 120, 0.10) 34%, rgba(255, 106, 26, 0) 72%);
       filter: blur(24px);
       pointer-events: none;
       z-index: -1;
@@ -147,12 +148,12 @@
       border-radius: 999px;
       background: linear-gradient(
         90deg,
-        rgba(255, 106, 26, 0),
-        rgba(255, 106, 26, 0.9),
-        rgba(255, 164, 92, 0.9),
-        rgba(255, 106, 26, 0)
+        rgba(42, 28, 20, 0),
+        rgba(42, 28, 20, 0.75),
+        rgba(74, 36, 20, 0.85),
+        rgba(42, 28, 20, 0)
       );
-      box-shadow: 0 0 16px rgba(255, 106, 26, 0.12);
+      box-shadow: none;
     }
 
     .subheadline {
@@ -169,12 +170,12 @@
       max-width: 860px;
       margin: 16px auto 58px;
       padding: 14px 22px;
-      border: 1px solid rgba(255, 106, 26, 0.18);
+      border: 1px solid rgba(42, 28, 20, 0.16);
       border-radius: 18px;
-      background: rgba(255, 250, 245, 0.34);
+      background: rgba(255, 244, 236, 0.18);
       box-shadow:
         0 10px 30px rgba(95, 54, 23, 0.06),
-        inset 0 1px 0 rgba(255,255,255,0.35);
+        inset 0 1px 0 rgba(255,255,255,0.14);
       backdrop-filter: blur(8px);
     }
 
@@ -184,8 +185,8 @@
       line-height: 1.48;
       letter-spacing: -0.015em;
       margin: 0;
-      color: var(--orange);
-      text-shadow: 0 0 20px rgba(255, 106, 26, 0.08);
+      color: var(--signal);
+      text-shadow: none;
     }
 
     .signup-panel {
@@ -197,8 +198,8 @@
       background: var(--panel-bg);
       backdrop-filter: blur(12px);
       box-shadow:
-        0 18px 48px rgba(95, 54, 23, 0.08),
-        inset 0 1px 0 rgba(255,255,255,0.45);
+        0 18px 48px rgba(95, 54, 23, 0.10),
+        inset 0 1px 0 rgba(255,255,255,0.20);
     }
 
     .email-form form {
@@ -224,15 +225,15 @@
     }
 
     .email-form input::placeholder {
-      color: rgba(42, 28, 20, 0.36);
+      color: rgba(42, 28, 20, 0.5);
     }
 
     .email-form input:focus {
-      border-color: rgba(255, 106, 26, 0.44);
-      background: rgba(255, 255, 255, 0.76);
+      border-color: rgba(42, 28, 20, 0.28);
+      background: rgba(255, 255, 255, 0.48);
       box-shadow:
-        0 0 0 3px rgba(255, 106, 26, 0.08),
-        0 8px 24px rgba(255, 106, 26, 0.10);
+        0 0 0 3px rgba(42, 28, 20, 0.05),
+        0 8px 24px rgba(42, 28, 20, 0.08);
       transform: translateY(-1px);
     }
 
@@ -248,7 +249,7 @@
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, background 0.2s ease;
       box-shadow:
-        0 10px 24px rgba(42, 28, 20, 0.14),
+        0 10px 24px rgba(42, 28, 20, 0.18),
         0 0 0 rgba(0,0,0,0);
     }
 
@@ -257,8 +258,8 @@
       opacity: 0.99;
       background: #20150f;
       box-shadow:
-        0 12px 28px rgba(42, 28, 20, 0.16),
-        0 0 20px rgba(255, 106, 26, 0.10);
+        0 12px 28px rgba(42, 28, 20, 0.22),
+        0 0 20px rgba(255, 255, 255, 0.04);
     }
 
     .build-note {
@@ -330,7 +331,7 @@
 
   <header class="top-bar">
     <div class="top-bar-inner">
-      <img src="logo.svg" alt="sparsX logo" class="company-logo" />
+      <img src="logo.png" alt="sparsX logo" class="company-logo" />
     </div>
   </header>
 
@@ -415,8 +416,8 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 175) {
-            const alpha = Math.max(0, 0.045 - dist / 6500);
-            ctx.strokeStyle = `rgba(255, 106, 26, ${alpha})`;
+            const alpha = Math.max(0, 0.035 - dist / 6500);
+            ctx.strokeStyle = `rgba(74, 36, 20, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -431,7 +432,7 @@
       nodes.forEach(node => {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 164, 92, ${node.alpha})`;
+        ctx.fillStyle = `rgba(74, 36, 20, ${node.alpha})`;
         ctx.fill();
       });
     }
@@ -440,9 +441,9 @@
       if (mouse.x === null || mouse.y === null) return;
 
       const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 180);
-      gradient.addColorStop(0, "rgba(255, 106, 26, 0.14)");
-      gradient.addColorStop(0.42, "rgba(255, 164, 92, 0.08)");
-      gradient.addColorStop(1, "rgba(255, 106, 26, 0)");
+      gradient.addColorStop(0, "rgba(255, 245, 238, 0.10)");
+      gradient.addColorStop(0.42, "rgba(255, 210, 180, 0.06)");
+      gradient.addColorStop(1, "rgba(255, 245, 238, 0)");
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.arc(mouse.x, mouse.y, 180, 0, Math.PI * 2);
